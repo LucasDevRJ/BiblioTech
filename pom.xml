@@ -12,7 +12,7 @@
 	<artifactId>BiblioTech</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BiblioTech</name>
-	<description>BiblioTech</description>
+	<description>Uma API para gerenciar cadastros de livros, autores e categorias</description>
 	<url/>
 	<licenses>
 		<license/>
