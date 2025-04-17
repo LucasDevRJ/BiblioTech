@@ -1,5 +1,7 @@
-package com.github.lucasdevrj.bibliotech;
+package com.github.lucasdevrj.bibliotech.livro;
 
+import com.github.lucasdevrj.bibliotech.autor.AutorModel;
+import com.github.lucasdevrj.bibliotech.categoria.CategoriaModel;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.github.lucasdevrj.bibliotech;
+package com.github.lucasdevrj.bibliotech.livro;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
