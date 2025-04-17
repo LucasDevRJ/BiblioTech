@@ -2,12 +2,16 @@ package com.github.lucasdevrj.bibliotech.autor;
 
 import com.github.lucasdevrj.bibliotech.livro.LivroModel;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "autores")
+@NoArgsConstructor
+@Data
 public class AutorModel {
 
     @Id

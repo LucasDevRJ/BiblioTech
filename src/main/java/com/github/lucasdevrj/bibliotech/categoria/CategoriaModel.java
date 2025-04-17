@@ -2,11 +2,15 @@ package com.github.lucasdevrj.bibliotech.categoria;
 
 import com.github.lucasdevrj.bibliotech.livro.LivroModel;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "categorias")
+@NoArgsConstructor
+@Data
 public class CategoriaModel {
 
     @Id

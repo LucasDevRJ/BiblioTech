@@ -3,11 +3,17 @@ package com.github.lucasdevrj.bibliotech.livro;
 import com.github.lucasdevrj.bibliotech.autor.AutorModel;
 import com.github.lucasdevrj.bibliotech.categoria.CategoriaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "livros")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class LivroModel {
 
     @Id
@@ -28,81 +34,4 @@ public class LivroModel {
     private AutorModel autor;
 
     private String idioma;
-
-    public LivroModel() {
-    }
-
-    public LivroModel(String titulo, AutorModel autor, CategoriaModel categoria, LocalDate dataPublicacao, String isbn, int numeroPaginas, String idioma) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.categoria = categoria;
-        this.dataPublicacao = dataPublicacao;
-        this.isbn = isbn;
-        this.numeroPaginas = numeroPaginas;
-        this.idioma = idioma;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getResumo() {
-        return resumo;
-    }
-
-    public void setResumo(String resumo) {
-        this.resumo = resumo;
-    }
-
-    public int getNumeroPaginas() {
-        return numeroPaginas;
-    }
-
-    public void setNumeroPaginas(int numeroPaginas) {
-        this.numeroPaginas = numeroPaginas;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public LocalDate getDataPublicacao() {
-        return dataPublicacao;
-    }
-
-    public void setDataPublicacao(LocalDate dataPublicacao) {
-        this.dataPublicacao = dataPublicacao;
-    }
-
-    public CategoriaModel getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaModel categoria) {
-        this.categoria = categoria;
-    }
-
-    public AutorModel getAutor() {
-        return autor;
-    }
-
-    public void setAutor(AutorModel autor) {
-        this.autor = autor;
-    }
-
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
 }
