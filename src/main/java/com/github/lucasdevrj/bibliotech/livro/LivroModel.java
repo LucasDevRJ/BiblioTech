@@ -18,8 +18,13 @@ public class LivroModel {
     private int numeroPaginas;
     private String isbn;
     private LocalDate dataPublicacao;
+
+    @ManyToOne
     private CategoriaModel categoria;
+
+    @ManyToOne
     private AutorModel autor;
+
     private String idioma;
 
     public LivroModel() {
