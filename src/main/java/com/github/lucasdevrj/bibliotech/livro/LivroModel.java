@@ -20,9 +20,11 @@ public class LivroModel {
     private LocalDate dataPublicacao;
 
     @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private CategoriaModel categoria;
 
     @ManyToOne
+    @JoinColumn(name = "autor_id")
     private AutorModel autor;
 
     private String idioma;
