@@ -25,8 +25,7 @@ public class CategoriaModel {
     @OneToMany(mappedBy = "categoria")
     private List<LivroModel> livros;
 
-    public CategoriaModel(String nome, List<LivroModel> livros) {
+    public CategoriaModel(String nome) {
         this.nome = nome;
-        this.livros = livros;
     }
 }

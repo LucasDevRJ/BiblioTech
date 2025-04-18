@@ -28,8 +28,7 @@ public class AutorModel {
     @OneToMany(mappedBy = "autor")
     private List<LivroModel> livros;
 
-    public AutorModel(String nome, List<LivroModel> livros) {
+    public AutorModel(String nome) {
         this.nome = nome;
-        this.livros = livros;
     }
 }
