@@ -1,4 +1,6 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
-public class LivroRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LivroRepository extends JpaRepository<LivroModel, Long> {
 }
