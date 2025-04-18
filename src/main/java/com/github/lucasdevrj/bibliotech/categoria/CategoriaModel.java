@@ -16,9 +16,17 @@ public class CategoriaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
     private String descricao;
 
     @OneToMany(mappedBy = "categoria")
     private List<LivroModel> livros;
+
+    public CategoriaModel(String nome, List<LivroModel> livros) {
+        this.nome = nome;
+        this.livros = livros;
+    }
 }

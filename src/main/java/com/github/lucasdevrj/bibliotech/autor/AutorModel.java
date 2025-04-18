@@ -17,11 +17,19 @@ public class AutorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
     private String nacionalidade;
     private LocalDate dataNascimento;
     private String biografia;
 
     @OneToMany(mappedBy = "autor")
     private List<LivroModel> livros;
+
+    public AutorModel(String nome, List<LivroModel> livros) {
+        this.nome = nome;
+        this.livros = livros;
+    }
 }

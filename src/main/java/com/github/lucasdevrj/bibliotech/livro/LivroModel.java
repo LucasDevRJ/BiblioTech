@@ -19,10 +19,16 @@ public class LivroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String titulo;
+
     private String resumo;
     private int numeroPaginas;
+
+    @Column(nullable = false, unique = true, length = 13)
     private String isbn;
+
     private LocalDate dataPublicacao;
 
     @ManyToOne
@@ -34,4 +40,9 @@ public class LivroModel {
     private AutorModel autor;
 
     private String idioma;
+
+    public LivroModel(String titulo, String isbn) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+    }
 }
