@@ -25,9 +25,6 @@ public class AutorModel {
     private LocalDate dataNascimento;
     private String biografia;
 
-    @OneToMany(mappedBy = "autor")
-    private List<LivroModel> livros;
-
     public AutorModel(String nome) {
         this.nome = nome;
     }

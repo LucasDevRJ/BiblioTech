@@ -22,9 +22,6 @@ public class CategoriaModel {
 
     private String descricao;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<LivroModel> livros;
-
     public CategoriaModel(String nome) {
         this.nome = nome;
     }
