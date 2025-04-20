@@ -2,9 +2,17 @@ package com.github.lucasdevrj.bibliotech.livro;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
+
+    private LivroService livroService;
+
+    public LivroController(LivroService livroService) {
+        this.livroService = livroService;
+    }
 
     @GetMapping("/welcome")
     public String displaysWelcomeMessage() {
@@ -19,8 +27,8 @@ public class LivroController {
 
     //Exibir todos os Livros (READ)
     @GetMapping("/listar")
-    public String listar() {
-        return "Livros listados com sucesso!";
+    public List<LivroModel> listar() {
+        return livroService.listarTodosOsLivros();
     }
 
     //Exibir Livro por ID (READ)
