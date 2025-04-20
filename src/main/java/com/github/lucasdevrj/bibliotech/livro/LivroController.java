@@ -3,7 +3,7 @@ package com.github.lucasdevrj.bibliotech.livro;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/livros")
 public class LivroController {
 
     @GetMapping("/welcome")
@@ -13,31 +13,31 @@ public class LivroController {
 
     //Adicionar Livro (CREATE)
     @PostMapping("/adicionar")
-    public String adicionarLivro() {
+    public String adicionar() {
         return "Livro adicionado com sucesso!";
     }
 
     //Exibir todos os Livros (READ)
     @GetMapping("/listar")
-    public String listarLivros() {
+    public String listar() {
         return "Livros listados com sucesso!";
     }
 
     //Exibir Livro por ID (READ)
     @GetMapping("/exibirPorId")
-    public String exibirLivroPorId() {
+    public String exibirPorId() {
         return "Livro exibido com sucesso!";
     }
 
     //Alterar dados dos Livros (UPDATE)
-    @PutMapping("/alterarLivroPorId")
-    public String alterarLivroPorId() {
-        return "Livro alterado com sucesso!";
+    @PutMapping("/atualizarPorId")
+    public String atualizarPorId() {
+        return "Livro atualizado com sucesso!";
     }
 
     //Deletar Livro (DELETE)
-    @DeleteMapping("/deletarLivroPorId")
-    public String deletarLivroPorId() {
+    @DeleteMapping("/deletarPorId")
+    public String deletarPorId() {
         return "Livro deletado com sucesso!";
     }
 }
