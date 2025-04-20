@@ -1,4 +1,6 @@
 package com.github.lucasdevrj.bibliotech.autor;
 
-public class AutorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AutorRepository extends JpaRepository<AutorModel, Long> {
 }

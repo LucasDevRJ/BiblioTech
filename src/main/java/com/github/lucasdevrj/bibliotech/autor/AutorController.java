@@ -2,9 +2,17 @@ package com.github.lucasdevrj.bibliotech.autor;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/autores")
 public class AutorController {
+
+    private AutorService autorService;
+
+    public AutorController(AutorService autorService) {
+        this.autorService = autorService;
+    }
 
     @PostMapping("/adicionar")
     public String adicionar() {
@@ -12,8 +20,8 @@ public class AutorController {
     }
 
     @GetMapping("/listar")
-    public String listar() {
-        return "Autores listados com sucesso!";
+    public List<AutorModel> listar() {
+        return autorService.listarTodoOsAutores();
     }
 
     @GetMapping("/exibirPorId")
