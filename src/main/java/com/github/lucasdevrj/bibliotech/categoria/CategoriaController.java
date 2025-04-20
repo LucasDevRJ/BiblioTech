@@ -2,9 +2,17 @@ package com.github.lucasdevrj.bibliotech.categoria;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
+
+    private CategoriaService categoriaService;
+
+    public CategoriaController(CategoriaService categoriaService) {
+        this.categoriaService = categoriaService;
+    }
 
     @PostMapping("/adicionar")
     public String adicionar() {
@@ -12,8 +20,8 @@ public class CategoriaController {
     }
 
     @GetMapping("/listar")
-    public String listar() {
-        return "Categoria listada com sucesso!";
+    public List<CategoriaModel> listar() {
+        return categoriaService.listarTodasAsCategorias();
     }
 
     @GetMapping("/exibirPorId")
