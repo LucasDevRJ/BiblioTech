@@ -29,9 +29,9 @@ public class AutorController {
         return autorService.exibirAutorPorId(id);
     }
 
-    @PutMapping("/atualizarPorId")
-    public String atualizarPorId() {
-        return "Autor atualizado com sucesso!";
+    @PutMapping("/atualizarPorId/{id}")
+    public AutorModel atualizarPorId(@PathVariable Long id, @RequestBody AutorModel autorAtualizado) {
+        return autorService.atualizarAutorPorId(id, autorAtualizado);
     }
 
     @DeleteMapping("/deletarPorId/{id}")

@@ -31,4 +31,12 @@ public class AutorService {
         autorRepository.deleteById(id);
     }
 
+    public AutorModel atualizarAutorPorId(Long id, AutorModel autorAtualizado) {
+        if (autorRepository.existsById(id)) {
+            autorAtualizado.setId(id);
+            return autorRepository.save(autorAtualizado);
+        }
+        return null;
+    }
+
 }
