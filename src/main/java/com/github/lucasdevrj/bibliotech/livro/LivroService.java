@@ -3,6 +3,7 @@ package com.github.lucasdevrj.bibliotech.livro;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LivroService {
@@ -15,6 +16,11 @@ public class LivroService {
 
     public List<LivroModel> listarTodosOsLivros() {
         return livroRepository.findAll();
+    }
+
+    public LivroModel exibirLivroPorId(Long id) {
+        Optional<LivroModel> livroModel = livroRepository.findById(id);
+        return livroModel.orElse(null);
     }
 
 }

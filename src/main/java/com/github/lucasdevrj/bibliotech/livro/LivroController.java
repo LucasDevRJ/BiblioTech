@@ -32,9 +32,9 @@ public class LivroController {
     }
 
     //Exibir Livro por ID (READ)
-    @GetMapping("/exibirPorId")
-    public String exibirPorId() {
-        return "Livro exibido com sucesso!";
+    @GetMapping("/exibirPorId/{id}")
+    public LivroModel exibirPorId(@PathVariable Long id) {
+        return livroService.exibirLivroPorId(id);
     }
 
     //Alterar dados dos Livros (UPDATE)
