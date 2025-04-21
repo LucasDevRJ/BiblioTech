@@ -23,4 +23,7 @@ public class LivroService {
         return livroModel.orElse(null);
     }
 
+    public LivroModel adicionarLivro(LivroModel livro) {
+        return livroRepository.save(livro);
+    }
 }

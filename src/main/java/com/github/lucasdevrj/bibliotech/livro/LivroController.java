@@ -21,8 +21,8 @@ public class LivroController {
 
     //Adicionar Livro (CREATE)
     @PostMapping("/adicionar")
-    public String adicionar() {
-        return "Livro adicionado com sucesso!";
+    public LivroModel adicionar(@RequestBody LivroModel livro) {
+        return livroService.adicionarLivro(livro);
     }
 
     //Exibir todos os Livros (READ)
