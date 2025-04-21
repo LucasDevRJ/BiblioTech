@@ -30,4 +30,12 @@ public class LivroService {
     public void deletarLivro(Long id) {
         livroRepository.deleteById(id);
     }
+
+    public LivroModel atualizarLivroPorId(Long id, LivroModel livroAtualizado) {
+        if (livroRepository.existsById(id)) {
+            livroAtualizado.setId(id);
+            return livroRepository.save(livroAtualizado);
+        }
+        return null;
+    }
 }

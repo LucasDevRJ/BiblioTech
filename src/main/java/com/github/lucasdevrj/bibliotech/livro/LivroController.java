@@ -48,4 +48,9 @@ public class LivroController {
     public void deletarPorId(@PathVariable Long id) {
         livroService.deletarLivro(id);
     }
+
+    @PutMapping("/atualizarPorId/{id}")
+    public LivroModel atualizar(@PathVariable Long id, @RequestBody LivroModel livroAtualizado) {
+        return livroService.atualizarLivroPorId(id, livroAtualizado);
+    }
 }
