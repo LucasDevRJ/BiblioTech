@@ -34,8 +34,8 @@ public class AutorController {
         return "Autor atualizado com sucesso!";
     }
 
-    @DeleteMapping("/deletarPorId")
-    public String deletarPorId() {
-        return "Autor deletado com sucesso!";
+    @DeleteMapping("/deletarPorId/{id}")
+    public void deletarPorId(@PathVariable Long id) {
+        autorService.deletarAutorPorId(id);
     }
 }
