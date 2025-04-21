@@ -1,5 +1,6 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.github.lucasdevrj.bibliotech.autor.AutorModel;
 import com.github.lucasdevrj.bibliotech.categoria.CategoriaModel;
 import jakarta.persistence.*;
@@ -29,6 +30,7 @@ public class LivroModel {
     @Column(nullable = false, unique = true, length = 13)
     private String isbn;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataPublicacao;
 
     @ManyToOne
