@@ -24,9 +24,9 @@ public class CategoriaController {
         return categoriaService.listarTodasAsCategorias();
     }
 
-    @GetMapping("/exibirPorId")
-        public String exibirPorId() {
-        return "Categoria exibida com sucesso!";
+    @GetMapping("/exibirPorId/{id}")
+        public CategoriaModel exibirPorId(@PathVariable Long id) {
+        return categoriaService.exibirCategoriaPorId(id);
     }
 
     @PutMapping("/atualizarPorId")
