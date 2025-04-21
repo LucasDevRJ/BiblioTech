@@ -24,9 +24,9 @@ public class AutorController {
         return autorService.listarTodoOsAutores();
     }
 
-    @GetMapping("/exibirPorId")
-    public String exibirPorId() {
-        return "Autor exibido com sucesso!";
+    @GetMapping("/exibirPorId/{id}")
+    public AutorModel exibirPorId(@PathVariable Long id) {
+        return autorService.exibirAutorPorId(id);
     }
 
     @PutMapping("/atualizarPorId")
