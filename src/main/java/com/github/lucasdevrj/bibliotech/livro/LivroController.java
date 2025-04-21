@@ -44,8 +44,8 @@ public class LivroController {
     }
 
     //Deletar Livro (DELETE)
-    @DeleteMapping("/deletarPorId")
-    public String deletarPorId() {
-        return "Livro deletado com sucesso!";
+    @DeleteMapping("/deletarPorId/{id}")
+    public void deletarPorId(@PathVariable Long id) {
+        livroService.deletarLivro(id);
     }
 }

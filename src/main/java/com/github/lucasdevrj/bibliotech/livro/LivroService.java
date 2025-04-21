@@ -26,4 +26,8 @@ public class LivroService {
     public LivroModel adicionarLivro(LivroModel livro) {
         return livroRepository.save(livro);
     }
+
+    public void deletarLivro(Long id) {
+        livroRepository.deleteById(id);
+    }
 }
