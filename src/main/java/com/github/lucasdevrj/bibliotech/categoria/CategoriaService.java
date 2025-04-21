@@ -31,4 +31,11 @@ public class CategoriaService {
         categoriaRepository.deleteById(id);
     }
 
+    public CategoriaModel atualizarCategoriaPorId(Long id, CategoriaModel categoriaAtualizada) {
+        if (categoriaRepository.existsById(id)) {
+            categoriaAtualizada.setId(id);
+            return categoriaRepository.save(categoriaAtualizada);
+        }
+        return null;
+    }
 }

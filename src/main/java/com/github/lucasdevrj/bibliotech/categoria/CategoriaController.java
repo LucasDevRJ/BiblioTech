@@ -29,9 +29,9 @@ public class CategoriaController {
         return categoriaService.exibirCategoriaPorId(id);
     }
 
-    @PutMapping("/atualizarPorId")
-    public String atualizarPorId() {
-        return "Categoria atualizada com sucesso!";
+    @PutMapping("/atualizarPorId/{id}")
+    public CategoriaModel atualizarPorId(@PathVariable Long id, @RequestBody CategoriaModel categoria) {
+        return categoriaService.atualizarCategoriaPorId(id, categoria);
     }
 
     @DeleteMapping("/deletarPorId/{id}")
