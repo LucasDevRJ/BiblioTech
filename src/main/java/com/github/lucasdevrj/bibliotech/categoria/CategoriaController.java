@@ -34,9 +34,9 @@ public class CategoriaController {
         return "Categoria atualizada com sucesso!";
     }
 
-    @DeleteMapping("/deletarPorId")
-    public String deletarPorId() {
-        return "Categoria deletada com sucesso!";
+    @DeleteMapping("/deletarPorId/{id}")
+    public void deletarPorId(@PathVariable Long id) {
+        categoriaService.deletarCategoriaPorId(id);
     }
 
 }
