@@ -15,8 +15,8 @@ public class CategoriaController {
     }
 
     @PostMapping("/adicionar")
-    public String adicionar() {
-        return "Categoria adicionada com sucesso!";
+    public CategoriaModel adicionar(@RequestBody CategoriaModel categoria) {
+        return categoriaService.adicionarCategoria(categoria);
     }
 
     @GetMapping("/listar")

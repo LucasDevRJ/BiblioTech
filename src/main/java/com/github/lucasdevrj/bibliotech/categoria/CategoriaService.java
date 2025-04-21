@@ -23,4 +23,8 @@ public class CategoriaService {
         return categoria.orElse(null);
     }
 
+    public CategoriaModel adicionarCategoria(CategoriaModel categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
 }
