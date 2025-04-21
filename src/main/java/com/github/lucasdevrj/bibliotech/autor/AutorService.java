@@ -23,4 +23,8 @@ public class AutorService {
         return autor.orElse(null);
     }
 
+    public AutorModel adicionarAutor(AutorModel autor) {
+        return autorRepository.save(autor);
+    }
+
 }

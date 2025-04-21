@@ -15,8 +15,8 @@ public class AutorController {
     }
 
     @PostMapping("/adicionar")
-    public String adicionar() {
-        return "Autor adicionado com sucesso!";
+    public AutorModel adicionar(@RequestBody AutorModel autor) {
+        return autorService.adicionarAutor(autor);
     }
 
     @GetMapping("/listar")
