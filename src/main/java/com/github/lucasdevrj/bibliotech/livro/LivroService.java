@@ -9,9 +9,11 @@ import java.util.Optional;
 public class LivroService {
 
     private LivroRepository livroRepository;
+    private LivroMapper livroMapper;
 
-    public LivroService(LivroRepository livroRepository) {
+    public LivroService(LivroRepository livroRepository, LivroMapper livroMapper) {
         this.livroRepository = livroRepository;
+        this.livroMapper = livroMapper;
     }
 
     public List<LivroModel> listarTodosOsLivros() {
@@ -23,8 +25,10 @@ public class LivroService {
         return livroModel.orElse(null);
     }
 
-    public LivroModel adicionarLivro(LivroModel livro) {
-        return livroRepository.save(livro);
+    public LivroDTO adicionarLivro(LivroDTO livroDTO) {
+        LivroModel livro = livroMapper.map(livroDTO);
+        livro = livroRepository.save(livro);
+        return livroMapper.map(livro);
     }
 
     public void deletarLivro(Long id) {

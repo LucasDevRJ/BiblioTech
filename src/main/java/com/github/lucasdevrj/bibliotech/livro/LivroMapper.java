@@ -1,5 +1,8 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LivroMapper {
 
     public LivroModel map(LivroDTO livroDTO) {
