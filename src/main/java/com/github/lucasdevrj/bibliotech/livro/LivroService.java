@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LivroService {
@@ -16,13 +17,14 @@ public class LivroService {
         this.livroMapper = livroMapper;
     }
 
-    public List<LivroModel> listarTodosOsLivros() {
-        return livroRepository.findAll();
+    public List<LivroDTO> listarTodosOsLivros() {
+        List<LivroModel> livros = livroRepository.findAll();
+        return livros.stream().map(livroMapper::map).collect(Collectors.toList());
     }
 
-    public LivroModel exibirLivroPorId(Long id) {
-        Optional<LivroModel> livroModel = livroRepository.findById(id);
-        return livroModel.orElse(null);
+    public LivroDTO exibirLivroPorId(Long id) {
+        Optional<LivroModel> livroPorId = livroRepository.findById(id);
+        return livroPorId.map(livroMapper::map).orElse(null);
     }
 
     public LivroDTO adicionarLivro(LivroDTO livroDTO) {
@@ -35,10 +37,13 @@ public class LivroService {
         livroRepository.deleteById(id);
     }
 
-    public LivroModel atualizarLivroPorId(Long id, LivroModel livroAtualizado) {
-        if (livroRepository.existsById(id)) {
+    public LivroDTO atualizarLivroPorId(Long id, LivroDTO livroDTO) {
+        Optional<LivroModel> livroExistente = livroRepository.findById(id);
+        if (livroExistente.isPresent()) {
+            LivroModel livroAtualizado = livroMapper.map(livroDTO);
             livroAtualizado.setId(id);
-            return livroRepository.save(livroAtualizado);
+            LivroModel livroSalvo = livroRepository.save(livroAtualizado);
+            return livroMapper.map(livroSalvo);
         }
         return null;
     }

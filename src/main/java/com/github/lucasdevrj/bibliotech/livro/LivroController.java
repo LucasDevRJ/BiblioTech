@@ -19,38 +19,28 @@ public class LivroController {
         return "Seja bem-vindo a BiblioTech!";
     }
 
-    //Adicionar Livro (CREATE)
     @PostMapping("/adicionar")
     public LivroDTO adicionar(@RequestBody LivroDTO livroDTO) {
         return livroService.adicionarLivro(livroDTO);
     }
 
-    //Exibir todos os Livros (READ)
     @GetMapping("/listar")
-    public List<LivroModel> listar() {
+    public List<LivroDTO> listar() {
         return livroService.listarTodosOsLivros();
     }
 
-    //Exibir Livro por ID (READ)
     @GetMapping("/exibirPorId/{id}")
-    public LivroModel exibirPorId(@PathVariable Long id) {
+    public LivroDTO exibirPorId(@PathVariable Long id) {
         return livroService.exibirLivroPorId(id);
     }
 
-    //Alterar dados dos Livros (UPDATE)
-    @PutMapping("/atualizarPorId")
-    public String atualizarPorId() {
-        return "Livro atualizado com sucesso!";
-    }
-
-    //Deletar Livro (DELETE)
     @DeleteMapping("/deletarPorId/{id}")
     public void deletarPorId(@PathVariable Long id) {
         livroService.deletarLivro(id);
     }
 
     @PutMapping("/atualizarPorId/{id}")
-    public LivroModel atualizar(@PathVariable Long id, @RequestBody LivroModel livroAtualizado) {
+    public LivroDTO atualizar(@PathVariable Long id, @RequestBody LivroDTO livroAtualizado) {
         return livroService.atualizarLivroPorId(id, livroAtualizado);
     }
 }
