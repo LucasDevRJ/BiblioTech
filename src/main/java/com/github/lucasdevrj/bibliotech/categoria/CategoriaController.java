@@ -15,22 +15,22 @@ public class CategoriaController {
     }
 
     @PostMapping("/adicionar")
-    public CategoriaModel adicionar(@RequestBody CategoriaModel categoria) {
+    public CategoriaDTO adicionar(@RequestBody CategoriaDTO categoria) {
         return categoriaService.adicionarCategoria(categoria);
     }
 
     @GetMapping("/listar")
-    public List<CategoriaModel> listar() {
+    public List<CategoriaDTO> listar() {
         return categoriaService.listarTodasAsCategorias();
     }
 
     @GetMapping("/exibirPorId/{id}")
-        public CategoriaModel exibirPorId(@PathVariable Long id) {
+        public CategoriaDTO exibirPorId(@PathVariable Long id) {
         return categoriaService.exibirCategoriaPorId(id);
     }
 
     @PutMapping("/atualizarPorId/{id}")
-    public CategoriaModel atualizarPorId(@PathVariable Long id, @RequestBody CategoriaModel categoria) {
+    public CategoriaDTO atualizarPorId(@PathVariable Long id, @RequestBody CategoriaDTO categoria) {
         return categoriaService.atualizarCategoriaPorId(id, categoria);
     }
 
