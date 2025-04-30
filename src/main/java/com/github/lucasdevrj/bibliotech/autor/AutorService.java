@@ -4,39 +4,47 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AutorService {
 
     private AutorRepository autorRepository;
+    private AutorMapper autorMapper;
 
-    public AutorService(AutorRepository autorRepository) {
+    public AutorService(AutorRepository autorRepository, AutorMapper autorMapper) {
         this.autorRepository = autorRepository;
+        this.autorMapper = autorMapper;
     }
 
-    public List<AutorModel> listarTodoOsAutores() {
-        return autorRepository.findAll();
+    public List<AutorDTO> listarTodoOsAutores() {
+        List<AutorModel> autores = autorRepository.findAll();
+        return autores.stream().map(autorMapper::map).collect(Collectors.toList());
     }
 
-    public AutorModel exibirAutorPorId(Long id) {
-        Optional<AutorModel> autor = autorRepository.findById(id);
-        return autor.orElse(null);
+    public AutorDTO exibirAutorPorId(Long id) {
+        Optional<AutorModel> autorPorId = autorRepository.findById(id);
+        return autorPorId.map(autorMapper::map).orElse(null);
     }
 
-    public AutorModel adicionarAutor(AutorModel autor) {
-        return autorRepository.save(autor);
+    public AutorDTO adicionarAutor(AutorDTO autorDTO) {
+        AutorModel autor = autorMapper.map(autorDTO);
+        autor = autorRepository.save(autor);
+        return autorMapper.map(autor);
     }
 
     public void deletarAutorPorId(Long id) {
         autorRepository.deleteById(id);
     }
 
-    public AutorModel atualizarAutorPorId(Long id, AutorModel autorAtualizado) {
-        if (autorRepository.existsById(id)) {
+    public AutorDTO atualizarAutorPorId(Long id, AutorDTO autorDTO) {
+        Optional<AutorModel> autorPorId = autorRepository.findById(id);
+        if (autorPorId.isPresent()) {
+            AutorModel autorAtualizado = autorMapper.map(autorDTO);
             autorAtualizado.setId(id);
-            return autorRepository.save(autorAtualizado);
+            AutorModel autorSalvo = autorRepository.save(autorAtualizado);
+            return autorMapper.map(autorSalvo);
         }
         return null;
     }
-
 }
