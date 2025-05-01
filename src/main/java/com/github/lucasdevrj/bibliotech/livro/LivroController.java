@@ -1,5 +1,7 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,33 +16,50 @@ public class LivroController {
         this.livroService = livroService;
     }
 
-    @GetMapping("/welcome")
+    @GetMapping("/bemvindo")
     public String displaysWelcomeMessage() {
         return "Seja bem-vindo a BiblioTech!";
     }
 
     @PostMapping("/adicionar")
-    public LivroDTO adicionar(@RequestBody LivroDTO livroDTO) {
-        return livroService.adicionarLivro(livroDTO);
+    public ResponseEntity<String> adicionar(@RequestBody LivroDTO livroDTO) {
+        livroService.adicionarLivro(livroDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Livro adicionado com sucesso!");
     }
 
     @GetMapping("/listar")
-    public List<LivroDTO> listar() {
-        return livroService.listarTodosOsLivros();
+    public ResponseEntity<List<LivroDTO>> listar() {
+        List<LivroDTO> livros = livroService.listarTodosOsLivros();
+        return ResponseEntity.ok(livros);
     }
 
     @GetMapping("/exibirPorId/{id}")
-    public LivroDTO exibirPorId(@PathVariable Long id) {
-        return livroService.exibirLivroPorId(id);
+    public ResponseEntity<?> exibirPorId(@PathVariable Long id) {
+        LivroDTO livro = livroService.exibirLivroPorId(id);
+        if (livro != null) {
+            return ResponseEntity.ok(livro);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
+        }
     }
 
     @DeleteMapping("/deletarPorId/{id}")
-    public void deletarPorId(@PathVariable Long id) {
-        livroService.deletarLivro(id);
+    public ResponseEntity<String> deletarPorId(@PathVariable Long id) {
+        if (livroService.exibirLivroPorId(id) != null) {
+            livroService.deletarLivro(id);
+            return ResponseEntity.ok("Livro deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
+        }
     }
 
     @PutMapping("/atualizarPorId/{id}")
-    public LivroDTO atualizar(@PathVariable Long id, @RequestBody LivroDTO livroAtualizado) {
-        return livroService.atualizarLivroPorId(id, livroAtualizado);
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody LivroDTO livroAtualizado) {
+        LivroDTO livro = livroService.atualizarLivroPorId(id, livroAtualizado);
+        if (livro != null) {
+            return ResponseEntity.ok(livro);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
+        }
     }
 }
