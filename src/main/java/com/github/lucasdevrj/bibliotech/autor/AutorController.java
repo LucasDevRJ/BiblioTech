@@ -15,22 +15,22 @@ public class AutorController {
     }
 
     @PostMapping("/adicionar")
-    public AutorModel adicionar(@RequestBody AutorModel autor) {
+    public AutorDTO adicionar(@RequestBody AutorDTO autor) {
         return autorService.adicionarAutor(autor);
     }
 
     @GetMapping("/listar")
-    public List<AutorModel> listar() {
+    public List<AutorDTO> listar() {
         return autorService.listarTodoOsAutores();
     }
 
     @GetMapping("/exibirPorId/{id}")
-    public AutorModel exibirPorId(@PathVariable Long id) {
+    public AutorDTO exibirPorId(@PathVariable Long id) {
         return autorService.exibirAutorPorId(id);
     }
 
     @PutMapping("/atualizarPorId/{id}")
-    public AutorModel atualizarPorId(@PathVariable Long id, @RequestBody AutorModel autorAtualizado) {
+    public AutorDTO atualizarPorId(@PathVariable Long id, @RequestBody AutorDTO autorAtualizado) {
         return autorService.atualizarAutorPorId(id, autorAtualizado);
     }
 
