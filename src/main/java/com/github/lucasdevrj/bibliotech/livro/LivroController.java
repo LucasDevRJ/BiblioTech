@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -70,6 +71,16 @@ public class LivroController {
             return ResponseEntity.ok(livro);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há livros cadastrados com esse categoria!");
+        }
+    }
+
+    @GetMapping("/listarLivrosPorDatas/{dataInicio}/{dataFim}")
+    public ResponseEntity<?> listarLivrosPorCategoria(@PathVariable LocalDate dataInicio, @PathVariable LocalDate dataFim) {
+        List<LivroDTO> livro = livroService.listarLivrosPorDatas(dataInicio, dataFim);
+        if (livro.stream().findFirst().isPresent()) {
+            return ResponseEntity.ok(livro);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há livros cadastrados com esses datas!");
         }
     }
 

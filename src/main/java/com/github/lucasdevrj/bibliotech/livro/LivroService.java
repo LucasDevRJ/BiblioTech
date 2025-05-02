@@ -2,6 +2,7 @@ package com.github.lucasdevrj.bibliotech.livro;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,6 +42,12 @@ public class LivroService {
 
     public List<LivroDTO> listarLivrosPorCategoria(String categoria) {
         return livroRepository.findByCategoriaNomeContainingIgnoreCase(categoria).stream()
+                .map(livroMapper::transfereDeDTOParaModel)
+                .collect(Collectors.toList());
+    }
+
+    public List<LivroDTO> listarLivrosPorDatas(LocalDate dataInicio, LocalDate dataFim) {
+        return livroRepository.findByDataPublicacaoBetween(dataInicio, dataFim).stream()
                 .map(livroMapper::transfereDeDTOParaModel)
                 .collect(Collectors.toList());
     }
