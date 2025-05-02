@@ -59,7 +59,7 @@ public class LivroController {
         if (livro.stream().findFirst().isPresent()) {
             return ResponseEntity.ok(livro);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livros inexistentes!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há livros cadastrados com esse autor!");
         }
     }
 
@@ -69,7 +69,7 @@ public class LivroController {
         if (livro.stream().findFirst().isPresent()) {
             return ResponseEntity.ok(livro);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livros inexistentes!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há livros cadastrados com esse categoria!");
         }
     }
 
