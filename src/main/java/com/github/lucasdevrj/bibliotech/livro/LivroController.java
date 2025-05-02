@@ -77,11 +77,7 @@ public class LivroController {
     @GetMapping("/listarLivrosPorDatas/{dataInicio}/{dataFim}")
     public ResponseEntity<?> listarLivrosPorCategoria(@PathVariable LocalDate dataInicio, @PathVariable LocalDate dataFim) {
         List<LivroDTO> livro = livroService.listarLivrosPorDatas(dataInicio, dataFim);
-        if (livro.stream().findFirst().isPresent()) {
-            return ResponseEntity.ok(livro);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há livros cadastrados com esses datas!");
-        }
+        return ResponseEntity.ok(livro);
     }
 
     @DeleteMapping("/deletarPorId/{id}")
