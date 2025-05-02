@@ -43,6 +43,16 @@ public class LivroController {
         }
     }
 
+    @GetMapping("/exibirLivroPorTitulo/{titulo}")
+    public ResponseEntity<?> exibirLivroPorTitulo(@PathVariable String titulo) {
+        List<LivroDTO> livro = livroService.exibirLivroPorTitulo(titulo);
+        if (livro.stream().findFirst().isPresent()) {
+            return ResponseEntity.ok(livro);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
+        }
+    }
+
     @DeleteMapping("/deletarPorId/{id}")
     public ResponseEntity<String> deletarPorId(@PathVariable Long id) {
         if (livroService.exibirLivroPorId(id) != null) {

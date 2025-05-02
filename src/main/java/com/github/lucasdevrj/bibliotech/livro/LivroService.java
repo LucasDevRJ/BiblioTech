@@ -27,6 +27,12 @@ public class LivroService {
         return livroPorId.map(livroMapper::map).orElse(null);
     }
 
+    public List<LivroDTO> exibirLivroPorTitulo(String titulo) {
+        return livroRepository.findByTituloContainingIgnoreCase(titulo).stream()
+                .map(livroMapper::map)
+                .collect(Collectors.toList());
+    }
+
     public LivroDTO adicionarLivro(LivroDTO livroDTO) {
         LivroModel livro = livroMapper.map(livroDTO);
         livro = livroRepository.save(livro);
