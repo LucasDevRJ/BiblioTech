@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LivroMapper {
 
-    public LivroModel map(LivroDTO livroDTO) {
+    public LivroModel transfereDeModelParaDTO(LivroDTO livroDTO) {
         LivroModel livroModel = new LivroModel();
         livroModel.setId(livroDTO.getId());
         livroModel.setTitulo(livroDTO.getTitulo());
@@ -19,7 +19,7 @@ public class LivroMapper {
         return livroModel;
     }
 
-    public LivroDTO map(LivroModel livroModel) {
+    public LivroDTO transfereDeDTOParaModel(LivroModel livroModel) {
         LivroDTO livroDTO = new LivroDTO();
         livroDTO.setId(livroModel.getId());
         livroDTO.setTitulo(livroModel.getTitulo());
