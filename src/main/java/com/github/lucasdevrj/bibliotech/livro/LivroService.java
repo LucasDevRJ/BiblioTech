@@ -1,7 +1,5 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
-import com.github.lucasdevrj.bibliotech.autor.AutorDTO;
-import com.github.lucasdevrj.bibliotech.autor.AutorModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,14 +27,20 @@ public class LivroService {
         return livroPorId.map(livroMapper::transfereDeDTOParaModel).orElse(null);
     }
 
-    public List<LivroDTO> exibirLivroPorTitulo(String titulo) {
+    public List<LivroDTO> listarLivrosPorTitulo(String titulo) {
         return livroRepository.findByTituloContainingIgnoreCase(titulo).stream()
                 .map(livroMapper::transfereDeDTOParaModel)
                 .collect(Collectors.toList());
     }
 
-    public List<LivroDTO> exibirLivroPorAutor(String nomeDoAutor) {
+    public List<LivroDTO> listarLivrosPorAutor(String nomeDoAutor) {
         return livroRepository.findByAutorNomeContainingIgnoreCase(nomeDoAutor).stream()
+                .map(livroMapper::transfereDeDTOParaModel)
+                .collect(Collectors.toList());
+    }
+
+    public List<LivroDTO> listarLivrosPorCategoria(String categoria) {
+        return livroRepository.findByCategoriaNomeContainingIgnoreCase(categoria).stream()
                 .map(livroMapper::transfereDeDTOParaModel)
                 .collect(Collectors.toList());
     }

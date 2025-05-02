@@ -43,23 +43,33 @@ public class LivroController {
         }
     }
 
-    @GetMapping("/exibirLivroPorTitulo/{titulo}")
-    public ResponseEntity<?> exibirLivroPorTitulo(@PathVariable String titulo) {
-        List<LivroDTO> livro = livroService.exibirLivroPorTitulo(titulo);
+    @GetMapping("/listarLivrosPorTitulo/{titulo}")
+    public ResponseEntity<?> listarLivrosPorTitulo(@PathVariable String titulo) {
+        List<LivroDTO> livro = livroService.listarLivrosPorTitulo(titulo);
         if (livro.stream().findFirst().isPresent()) {
             return ResponseEntity.ok(livro);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há livros cadastrados com esse titulo!");
         }
     }
 
-    @GetMapping("/exibirLivroPorAutor/{autor}")
-    public ResponseEntity<?> exibirLivroPorAutor(@PathVariable String autor) {
-        List<LivroDTO> livro = livroService.exibirLivroPorAutor(autor);
+    @GetMapping("/listarLivrosPorAutor/{autor}")
+    public ResponseEntity<?> listarLivrosPorAutor(@PathVariable String autor) {
+        List<LivroDTO> livro = livroService.listarLivrosPorAutor(autor);
         if (livro.stream().findFirst().isPresent()) {
             return ResponseEntity.ok(livro);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livros inexistentes!");
+        }
+    }
+
+    @GetMapping("/listarLivrosPorCategoria/{categoria}")
+    public ResponseEntity<?> listarLivrosPorCategoria(@PathVariable String categoria) {
+        List<LivroDTO> livro = livroService.listarLivrosPorCategoria(categoria);
+        if (livro.stream().findFirst().isPresent()) {
+            return ResponseEntity.ok(livro);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livros inexistentes!");
         }
     }
 

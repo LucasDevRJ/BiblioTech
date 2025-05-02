@@ -1,6 +1,5 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
-import com.github.lucasdevrj.bibliotech.autor.AutorDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -11,4 +10,5 @@ public interface LivroRepository extends JpaRepository<LivroModel, Long> {
 
     List<LivroModel> findByAutorNomeContainingIgnoreCase(String nome);
 
+    List<LivroModel> findByCategoriaNomeContainingIgnoreCase(String categoria);
 }
