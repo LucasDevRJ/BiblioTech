@@ -1,5 +1,7 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -78,6 +80,12 @@ public class LivroController {
     public ResponseEntity<?> listarLivrosPorCategoria(@PathVariable LocalDate dataInicio, @PathVariable LocalDate dataFim) {
         List<LivroDTO> livro = livroService.listarLivrosPorDatas(dataInicio, dataFim);
         return ResponseEntity.ok(livro);
+    }
+
+    @GetMapping("/listarLivrosComOrdenacao")
+    public ResponseEntity<Page<LivroDTO>> listarLivros(Pageable pageable) {
+        Page<LivroDTO> livros = livroService.listarLivrosComOrdenacao(pageable);
+        return ResponseEntity.ok(livros);
     }
 
     @DeleteMapping("/deletarPorId/{id}")

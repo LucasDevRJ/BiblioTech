@@ -1,5 +1,7 @@
 package com.github.lucasdevrj.bibliotech.livro;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -50,6 +52,10 @@ public class LivroService {
         return livroRepository.findByDataPublicacaoBetween(dataInicio, dataFim).stream()
                 .map(livroMapper::transfereDeDTOParaModel)
                 .collect(Collectors.toList());
+    }
+
+    public Page<LivroDTO> listarLivrosComOrdenacao(Pageable pageable) {
+        return livroRepository.findAll(pageable).map(livroMapper::transfereDeDTOParaModel);
     }
 
     public LivroDTO adicionarLivro(LivroDTO livroDTO) {
