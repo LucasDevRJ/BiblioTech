@@ -107,4 +107,14 @@ public class LivroController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro inexistente!");
         }
     }
+
+    @GetMapping("/exibeQuantidadeDeLivrosCadastrados")
+    public ResponseEntity<String> exibeTotalDeLivrosCadastrados() {
+        long livros = livroService.exibeQuantidadeDeLivrosCadastrados();
+        if (livros == 0) {
+            return ResponseEntity.ok("Não há livros cadastrados!");
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body("A quantidade de livros cadastrados é " + livros);
+        }
+    }
 }

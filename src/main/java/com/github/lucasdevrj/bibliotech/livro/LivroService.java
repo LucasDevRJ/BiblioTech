@@ -78,4 +78,8 @@ public class LivroService {
         }
         return null;
     }
+
+    public long exibeQuantidadeDeLivrosCadastrados() {
+        return livroRepository.count();
+    }
 }

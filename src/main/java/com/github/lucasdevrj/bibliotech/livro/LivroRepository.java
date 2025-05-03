@@ -15,4 +15,5 @@ public interface LivroRepository extends JpaRepository<LivroModel, Long> {
 
     List<LivroModel> findByDataPublicacaoBetween(LocalDate dataInicio, LocalDate dataFim);
 
+    long count();
 }
