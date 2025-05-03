@@ -1,5 +1,7 @@
 package com.github.lucasdevrj.bibliotech.categoria;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +17,44 @@ public class CategoriaController {
     }
 
     @PostMapping("/adicionar")
-    public CategoriaDTO adicionar(@RequestBody CategoriaDTO categoria) {
-        return categoriaService.adicionarCategoria(categoria);
+    public ResponseEntity<String> adicionar(@RequestBody CategoriaDTO categoria) {
+        categoriaService.adicionarCategoria(categoria);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Categoria adicionada com sucesso!");
     }
 
     @GetMapping("/listar")
-    public List<CategoriaDTO> listar() {
-        return categoriaService.listarTodasAsCategorias();
+    public ResponseEntity<List<CategoriaDTO>> listar() {
+        List<CategoriaDTO> categoriaDTOS = categoriaService.listarTodasAsCategorias();
+        return ResponseEntity.ok(categoriaDTOS);
     }
 
     @GetMapping("/exibirPorId/{id}")
-        public CategoriaDTO exibirPorId(@PathVariable Long id) {
-        return categoriaService.exibirCategoriaPorId(id);
+        public ResponseEntity<?> exibirPorId(@PathVariable Long id) {
+        CategoriaDTO categoria = categoriaService.exibirCategoriaPorId(id);
+        if (categoria != null) {
+            return ResponseEntity.ok(categoria);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Categoria inexistente!");
+        }
     }
 
     @PutMapping("/atualizarPorId/{id}")
-    public CategoriaDTO atualizarPorId(@PathVariable Long id, @RequestBody CategoriaDTO categoria) {
-        return categoriaService.atualizarCategoriaPorId(id, categoria);
+    public ResponseEntity<?> atualizarPorId(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
+        CategoriaDTO categoria = categoriaService.atualizarCategoriaPorId(id, categoriaDTO);
+        if (categoria != null) {
+            return ResponseEntity.ok(categoria);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Categoria inexistente!");
+        }
     }
 
     @DeleteMapping("/deletarPorId/{id}")
-    public void deletarPorId(@PathVariable Long id) {
-        categoriaService.deletarCategoriaPorId(id);
+    public ResponseEntity<String> deletarPorId(@PathVariable Long id) {
+        if (categoriaService.exibirCategoriaPorId(id) != null) {
+            categoriaService.deletarCategoriaPorId(id);
+            return ResponseEntity.ok("Categoria deletada com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Categoria inexistente!");
+        }
     }
-
 }
