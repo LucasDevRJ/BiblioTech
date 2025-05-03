@@ -1,5 +1,7 @@
 package com.github.lucasdevrj.bibliotech.autor;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,27 +17,44 @@ public class AutorController {
     }
 
     @PostMapping("/adicionar")
-    public AutorDTO adicionar(@RequestBody AutorDTO autor) {
-        return autorService.adicionarAutor(autor);
+    public ResponseEntity<String> adicionar(@RequestBody AutorDTO autor) {
+        autorService.adicionarAutor(autor);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Autor adicionado com sucesso!");
     }
 
     @GetMapping("/listar")
-    public List<AutorDTO> listar() {
-        return autorService.listarTodoOsAutores();
+    public ResponseEntity<List<AutorDTO>> autores() {
+        List<AutorDTO> autores = autorService.listarTodoOsAutores();
+        return ResponseEntity.ok(autores);
     }
 
     @GetMapping("/exibirPorId/{id}")
-    public AutorDTO exibirPorId(@PathVariable Long id) {
-        return autorService.exibirAutorPorId(id);
+    public ResponseEntity<?> exibirPorId(@PathVariable Long id) {
+        AutorDTO autor = autorService.exibirAutorPorId(id);
+        if (autor != null) {
+            return ResponseEntity.ok(autor);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Autor inexistente!");
+        }
     }
 
     @PutMapping("/atualizarPorId/{id}")
-    public AutorDTO atualizarPorId(@PathVariable Long id, @RequestBody AutorDTO autorAtualizado) {
-        return autorService.atualizarAutorPorId(id, autorAtualizado);
+    public ResponseEntity<?> atualizarPorId(@PathVariable Long id, @RequestBody AutorDTO autorAtualizado) {
+        AutorDTO autor = autorService.atualizarAutorPorId(id, autorAtualizado);
+        if (autor != null) {
+            return ResponseEntity.ok(autor);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Autor inexistente!");
+        }
     }
 
     @DeleteMapping("/deletarPorId/{id}")
-    public void deletarPorId(@PathVariable Long id) {
-        autorService.deletarAutorPorId(id);
+    public ResponseEntity<String> deletarPorId(@PathVariable Long id) {
+        if (autorService.exibirAutorPorId(id) != null) {
+            autorService.deletarAutorPorId(id);
+            return ResponseEntity.ok("Autor deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Autor inexistente!");
+        }
     }
 }
