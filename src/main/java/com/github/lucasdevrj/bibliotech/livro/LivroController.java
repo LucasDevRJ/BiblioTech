@@ -53,12 +53,12 @@ public class LivroController {
         return ResponseEntity.ok(livros);
     }
 
+    @GetMapping("/exibirPorId/{id}")
     @Operation(summary = "Exibi por ID", description = "Essa rota exibe as informações de um Livro pelo ID.")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Livro exibido com sucesso."),
             @ApiResponse(responseCode = "404", description = "Erro ao exibir o livro.")
     })
-    @GetMapping("/exibirPorId/{id}")
     public ResponseEntity<?> exibirPorId(@Parameter(description = "Usuário encaminha o ID do livro") @PathVariable Long id) {
         LivroDTO livro = livroService.exibirLivroPorId(id);
         if (livro != null) {
