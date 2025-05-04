@@ -24,8 +24,4 @@ public class AutorModel {
     private String nacionalidade;
     private LocalDate dataNascimento;
     private String biografia;
-
-    public AutorModel(String nome) {
-        this.nome = nome;
-    }
 }

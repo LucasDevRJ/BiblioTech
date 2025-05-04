@@ -42,9 +42,4 @@ public class LivroModel {
     private AutorModel autor;
 
     private String idioma;
-
-    public LivroModel(String titulo, String isbn) {
-        this.titulo = titulo;
-        this.isbn = isbn;
-    }
 }

@@ -21,8 +21,4 @@ public class CategoriaModel {
     private String nome;
 
     private String descricao;
-
-    public CategoriaModel(String nome) {
-        this.nome = nome;
-    }
 }
