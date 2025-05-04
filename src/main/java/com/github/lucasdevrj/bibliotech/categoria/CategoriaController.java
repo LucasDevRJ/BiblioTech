@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-    private CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
 
     public CategoriaController(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;

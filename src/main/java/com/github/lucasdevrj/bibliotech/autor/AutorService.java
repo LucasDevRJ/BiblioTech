@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 @Service
 public class AutorService {
 
-    private AutorRepository autorRepository;
-    private AutorMapper autorMapper;
+    private final AutorRepository autorRepository;
+    private final AutorMapper autorMapper;
 
     public AutorService(AutorRepository autorRepository, AutorMapper autorMapper) {
         this.autorRepository = autorRepository;

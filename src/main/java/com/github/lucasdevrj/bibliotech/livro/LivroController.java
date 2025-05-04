@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/livros")
 public class LivroController {
 
-    private LivroService livroService;
+    private final LivroService livroService;
 
     public LivroController(LivroService livroService) {
         this.livroService = livroService;

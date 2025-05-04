@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 @Service
 public class CategoriaService {
 
-    private CategoriaRepository categoriaRepository;
-    private CategoriaMapper categoriaMapper;
+    private final CategoriaRepository categoriaRepository;
+    private final CategoriaMapper categoriaMapper;
 
     public CategoriaService(CategoriaRepository categoriaRepository, CategoriaMapper categoriaMapper) {
         this.categoriaRepository = categoriaRepository;

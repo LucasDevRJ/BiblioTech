@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/autores")
 public class AutorController {
 
-    private AutorService autorService;
+    private final AutorService autorService;
 
     public AutorController(AutorService autorService) {
         this.autorService = autorService;
